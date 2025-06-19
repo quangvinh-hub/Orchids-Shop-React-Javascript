@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { listOfOrchids } from "../data/ListOfOrchids";
-import { Card } from "react-bootstrap";
+import { Button, Card, Modal } from "react-bootstrap";
 import { Heart, Leaf, MapPin, Star } from "lucide-react";
 import "../styles/Card.css";
 export default function Orchids() {
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedOrchid, setSelectedOrchid] = useState(null);
+  const handleShowModal = () => {
+    setModalShow(true);
+  };
+  const handleCloseModal = () => {
+    setModalShow(false);
+  };
   const renderRatingStars = (count) => {
     const stars = [];
     for (var i = 0; i < count; i++) {
@@ -51,10 +59,48 @@ export default function Orchids() {
                   <span>{orchid.color}</span>
                 </div>
               </div>
+              <div className="card-info">
+                <Button
+                  onClick={() => {
+                    setSelectedOrchid(orchid);
+                    handleShowModal();
+                  }}
+                >
+                  Detail
+                </Button>
+              </div>
             </div>
           </Card>
         ))}
       </div>
+      {selectedOrchid && (
+        <Modal show={modalShow} onHide={handleCloseModal}>
+          <Modal.Header closeButton>{selectedOrchid.name}</Modal.Header>
+          <Modal.Body>
+            <div className="modal-img-wrapper">
+              <img src={selectedOrchid.image} alt="" className="card-img" />
+            </div>
+            <p>
+              <strong>Category: </strong> {selectedOrchid.category}
+            </p>
+            <p>
+              <strong>Origin: </strong> {selectedOrchid.origin}
+            </p>
+            <p>
+              <strong>Color: </strong> {selectedOrchid.color}
+            </p>
+            <p>
+              <strong>Rating: </strong>
+              <span className="rating">
+                {renderRatingStars(selectedOrchid.rating)}
+              </span>
+            </p>
+            <p>
+              <strong>Likes:</strong> {selectedOrchid.numberOfLike}
+            </p>
+          </Modal.Body>
+        </Modal>
+      )}
     </>
   );
 }

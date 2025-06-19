@@ -104,3 +104,8 @@
   gap: 24px;
   padding: 20px;
 }
+.modal-img-wrapper {
+  height: 250px;
+  background: linear-gradient(to bottom, #fbd3e9, #bb377d);
+  position: relative;
+}

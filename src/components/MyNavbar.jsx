@@ -1,12 +1,18 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { useContext } from "react";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router";
+import { ThemeContext } from "../contexts/ThemeContext";
 
-function MyNavbar() {
+export default function MyNavbar() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar
+        bg={toggleTheme}
+        data-bs-theme={theme}
+        expand="lg"
+        className="bg-body-tertiary"
+      >
         <Container>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -17,15 +23,16 @@ function MyNavbar() {
               {/* <NavLink className="nav-link active" to="/products">
                 Products
               </NavLink> */}
-              <NavLink className="nav-link" to="/contact">
+              {/* <NavLink className="nav-link" to="/contact">
                 Contact
-              </NavLink>
+              </NavLink> */}
             </Nav>
           </Navbar.Collapse>
         </Container>
+        <Button onClick={toggleTheme} variant={theme}>
+          Toogle Theme
+        </Button>
       </Navbar>
     </>
   );
 }
-
-export default MyNavbar;

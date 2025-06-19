@@ -1,0 +1,8 @@
+.layout-container.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+.layout-container.dark {
+  background-color: #2b3035;
+  color: #ffffff;
+}

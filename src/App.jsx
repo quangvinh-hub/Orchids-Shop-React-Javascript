@@ -1,10 +1,14 @@
-import React from "react";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import AppRoutes from "./routes/AppRoutes";
 
 export default function App() {
   return (
-    <div>
-      <AppRoutes />
-    </div>
+    <>
+      <ThemeProvider>
+        <div>
+          <AppRoutes />
+        </div>
+      </ThemeProvider>
+    </>
   );
 }
