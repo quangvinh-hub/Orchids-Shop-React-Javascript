@@ -6,7 +6,7 @@ import "../styles/Layout.css";
 export default function AppLayout() {
   const { theme } = useContext(ThemeContext);
   return (
-    <div className={`layout-container ${theme}`}>
+    <div className={`layout-container ${theme} min-h-screen`}>
       <MyNavbar />
       <Outlet />
     </div>

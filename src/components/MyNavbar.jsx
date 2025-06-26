@@ -23,9 +23,18 @@ export default function MyNavbar() {
               {/* <NavLink className="nav-link active" to="/products">
                 Products
               </NavLink> */}
-              {/* <NavLink className="nav-link" to="/contact">
+              <NavLink className="nav-link" to="/detail">
+                Detail
+              </NavLink>
+              <NavLink className="nav-link" to="/about">
+                About
+              </NavLink>
+              <NavLink className="nav-link" to="/naturals">
+                Naturals
+              </NavLink>
+              <NavLink className="nav-link" to="/contact">
                 Contact
-              </NavLink> */}
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>

@@ -1,94 +1,50 @@
-import React from "react";
+import { useState } from "react";
+import { Card } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
 
-export default function MyCarousel() {
+function MyCarousel() {
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex) => {
+    setIndex(selectedIndex);
+  };
+
   return (
-    <>
-      <div id="carouselExampleCaptions" className="carousel slide">
-        <div className="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to={0}
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          />
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to={1}
-            aria-label="Slide 2"
-          />
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to={2}
-            aria-label="Slide 3"
-          />
-        </div>
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img
-              src="https://cdn.mos.cms.futurecdn.net/YsV4Lv4EqUPRK8cFrngVaL.jpg"
-              className="d-block w-100"
-              alt="..."
-              style={{ height: "600px", objectFit: "cover" }}
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://www.sunset.com/wp-content/uploads/orchids-pc-dmitriy-sidor-getty-1200x600.jpg"
-              className="d-block w-100"
-              alt="..."
-              style={{ height: "600px", objectFit: "cover" }}
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>
-                Some representative placeholder content for the second slide.
-              </p>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://www.thespruce.com/thmb/haWXpZNm061CO3yX5p6z2qKpnCw=/6257x0/filters:no_upscale():max_bytes(150000):strip_icc()/orchid-identification-1315976-hero-1b62f0a648c24f798a354bc04d3bca5e.jpg"
-              className="d-block w-100"
-              alt="..."
-              style={{ height: "600px", objectFit: "cover" }}
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>
-                Some representative placeholder content for the third slide.
-              </p>
-            </div>
-          </div>
-        </div>
-        <button
-          className="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="prev"
-        >
-          <span className="carousel-control-prev-icon" aria-hidden="true" />
-          <span className="visually-hidden">Previous</span>
-        </button>
-        <button
-          className="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="next"
-        >
-          <span className="carousel-control-next-icon" aria-hidden="true" />
-          <span className="visually-hidden">Next</span>
-        </button>
-      </div>
-    </>
+    <Carousel activeIndex={index} onSelect={handleSelect}>
+      <Carousel.Item>
+        <img
+          style={{ height: "600px", objectFit: "cover", width: "100%" }}
+          src="https://cdn.mos.cms.futurecdn.net/YsV4Lv4EqUPRK8cFrngVaL.jpg"
+        />
+        <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          style={{ height: "600px", objectFit: "cover", width: "100%" }}
+          src="https://www.sunset.com/wp-content/uploads/orchids-pc-dmitriy-sidor-getty-1200x600.jpg"
+        />
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          style={{ height: "600px", objectFit: "cover", width: "100%" }}
+          src="https://www.thespruce.com/thmb/haWXpZNm061CO3yX5p6z2qKpnCw=/6257x0/filters:no_upscale():max_bytes(150000):strip_icc()/orchid-identification-1315976-hero-1b62f0a648c24f798a354bc04d3bca5e.jpg"
+        />
+        <Carousel.Caption>
+          <h3>Third slide label</h3>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
   );
 }
+
+export default MyCarousel;

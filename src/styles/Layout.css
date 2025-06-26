@@ -6,3 +6,7 @@
   background-color: #2b3035;
   color: #ffffff;
 }
+.layout-container {
+  height: 100vh;
+  transition: 0.3s;
+}

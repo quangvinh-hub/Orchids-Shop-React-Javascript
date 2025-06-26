@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { listOfOrchids } from "../data/ListOfOrchids";
 import { Button, Card, Modal } from "react-bootstrap";
 import { Heart, Leaf, MapPin, Star } from "lucide-react";
 import "../styles/Card.css";
-export default function Orchids() {
+import { useNavigate } from "react-router";
+export default function Orchids({ orchid }) {
   const [modalShow, setModalShow] = useState(false);
   const [selectedOrchid, setSelectedOrchid] = useState(null);
+  const navigate = useNavigate();
   const handleShowModal = () => {
     setModalShow(true);
   };
@@ -25,54 +26,62 @@ export default function Orchids() {
   };
   return (
     <>
-      <div className="orchid-grid">
-        {listOfOrchids.map((orchid) => (
-          <Card key={orchid.id} className="orchid-card">
-            <div className="card-img-wrapper">
-              <img src={orchid.image} alt={orchid.name} className="card-img" />
-              {orchid.isNatural && (
-                <span className="badge-natural">
-                  <Leaf color="green" />
-                </span>
-              )}
+      <Card
+        onClick={() => {
+          setSelectedOrchid(orchid);
+          handleShowModal();
+        }}
+        key={orchid.id}
+        className="orchid-card"
+        style={{ border: "none", width: "18rem" }}
+      >
+        <div className="card-img-wrapper">
+          <img src={orchid.image} alt={orchid.name} className="card-img" />
+          {orchid.isNatural && (
+            <span className="badge-natural">
+              <Leaf color="green" />
+            </span>
+          )}
+        </div>
+        <div className="card-content">
+          <h3 className="orchid-name">{orchid.name}</h3>
+          <div className="card-info">
+            <span className="category-tag">{orchid.category}</span>
+            <div className="rating">{renderRatingStars(orchid.rating)}</div>
+          </div>
+          <div className="meta">
+            <span className="meta-item">
+              <MapPin size={16} style={{ marginRight: "4px" }} />
+              {orchid.origin}
+            </span>
+            <span className="likes">
+              <Heart size={16} style={{ marginRight: "4px" }} />
+              {orchid.numberOfLike}
+            </span>
+            <div className="color">
+              <span
+                className="color-dot"
+                style={{ backgroundColor: orchid.color }}
+              ></span>
+              <span>{orchid.color}</span>
             </div>
-            <div className="card-content">
-              <h3 className="orchid-name">{orchid.name}</h3>
-              <div className="card-info">
-                <span className="category-tag">{orchid.category}</span>
-                <div className="rating">{renderRatingStars(orchid.rating)}</div>
-              </div>
-              <div className="meta">
-                <span className="meta-item">
-                  <MapPin size={16} style={{ marginRight: "4px" }} />
-                  {orchid.origin}
-                </span>
-                <span className="likes">
-                  <Heart size={16} style={{ marginRight: "4px" }} />
-                  {orchid.numberOfLike}
-                </span>
-                <div className="color">
-                  <span
-                    className="color-dot"
-                    style={{ backgroundColor: orchid.color }}
-                  ></span>
-                  <span>{orchid.color}</span>
-                </div>
-              </div>
-              <div className="card-info">
-                <Button
-                  onClick={() => {
-                    setSelectedOrchid(orchid);
-                    handleShowModal();
-                  }}
-                >
-                  Detail
-                </Button>
-              </div>
-            </div>
-          </Card>
-        ))}
-      </div>
+          </div>
+          <div className="card-info">
+            {/* <Button
+              onClick={() => {
+                setSelectedOrchid(orchid);
+                handleShowModal();
+              }}
+            >
+              Detail
+            </Button> */}
+            <Button onClick={() => navigate(`/detail/${orchid.id}`)}>
+              Detail
+            </Button>
+          </div>
+        </div>
+      </Card>
+
       {selectedOrchid && (
         <Modal show={modalShow} onHide={handleCloseModal}>
           <Modal.Header closeButton>{selectedOrchid.name}</Modal.Header>
